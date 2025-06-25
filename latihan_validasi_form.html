@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan Validasi Form</title>
+    <style>
+        .error { color: red; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h2>Form Registrasi</h2>
+    <form onsubmit="return validasi()">
+        <label for="nama">Nama Lengkap:</label><br>
+        <input type="text" id="nama" name="nama"><br>
+        <small id="nama-error" class="error"></small><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <small id="email-error" class="error"></small><br><br>
+
+        <input type="submit" value="Daftar">
+    </form>
+
+    <script>
+        function validasi() {
+            var nama = document.getElementById("nama").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var namaError = document.getElementById("nama-error");
+            var emailError = document.getElementById("email-error");
+
+            // Reset pesan error
+            namaError.innerHTML = "";
+            emailError.innerHTML = "";
+
+            var valid = true;
+
+            // Validasi Nama
+            if (nama === "") {
+                namaError.innerHTML = "Nama tidak boleh kosong!";
+                valid = false;
+            }
+
+            // Validasi Email
+            if (email === "") {
+                emailError.innerHTML = "Email tidak boleh kosong!";
+                valid = false;
+            } else if (!/\S+@\S+\.\S+/.test(email)) {
+                emailError.innerHTML = "Format email tidak valid!";
+                valid = false;
+            }
+
+            if (!valid) return false;
+
+            alert("Registrasi berhasil!");
+            return true;
+        }
+    </script>
+</body>
+</html>

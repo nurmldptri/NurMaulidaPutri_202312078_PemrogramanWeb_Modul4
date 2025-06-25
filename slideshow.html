@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head><title>Image Slideshow</title></head>
+<body>
+<h2>Galeri Gambar</h2>
+<img id="slideshow-image" src="" alt="Slideshow" width="500">
+<br>
+<button onclick="gantiGambar(-1)">Previous</button>
+<button onclick="gantiGambar(1)">Next</button>
+
+<script>
+var gambar = [
+  "https://ae01.alicdn.com/kf/HTB1.M9mLXXXXXbrXXXXq6xXFXXXL.jpg",
+  "https://ae01.alicdn.com/kf/HTB16vl.LXXXXXX4XFXXq6xXFXXX2.jpg",
+  "https://img.lovepik.com/photo/50107/3515.jpg_wh860.jpg"
+];
+var indexGambar = 0;
+var imageElement = document.getElementById("slideshow-image");
+
+function tampilkanGambar() {
+  imageElement.src = gambar[indexGambar];
+}
+
+function gantiGambar(arah) {
+  indexGambar += arah;
+  // Jika sudah gambar terakhir, kembali ke awal
+  if (indexGambar >= gambar.length) {
+    indexGambar = 0;
+  }
+  // Jika sudah gambar pertama dan menekan previous, pergi ke akhir
+  if (indexGambar < 0) {
+    indexGambar = gambar.length - 1;
+  }
+  tampilkanGambar();
+}
+
+// Tampilkan gambar pertama saat halaman dimuat
+tampilkanGambar();
+</script>
+</body>
+</html>
